@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -55,14 +56,22 @@ public class MainController implements Initializable {
     private void handleButtonAction(ActionEvent actionEvent) {
         if (actionEvent.getSource() == b_insert) {
             insertRecord();
-            System.out.println("Insert button clicked!");
         } else if (actionEvent.getSource() == b_update) {
             updateRecord();
-            System.out.println("Update button clicked!");
         } else if (actionEvent.getSource() == b_delete) {
             deleteRecord();
-            System.out.println("Delete button clicked!");
         }
+    }
+
+    @FXML
+    public void handleMouseAction(MouseEvent mouseEvent) {
+        Books book = tv_books.getSelectionModel().getSelectedItem();
+
+        tf_id.setText("" + book.getId());
+        tf_title.setText(book.getTitle());
+        tf_author.setText(book.getAuthor());
+        tf_year.setText("" + book.getYear());
+        tf_pages.setText("" + book.getPages());
     }
 
     public Connection openConnection() {
@@ -123,8 +132,7 @@ public class MainController implements Initializable {
 
     private void insertRecord() {
 
-        String query = "INSERT INTO books VALUES (" + tf_id.getText() + ",'" + tf_title.getText() + "','" + tf_author.getText() + "',"
-                + tf_year.getText() + "," + tf_pages.getText() + ")";
+        String query = "INSERT INTO books VALUES (" + tf_id.getText() + ",'" + tf_title.getText() + "','" + tf_author.getText() + "'," + tf_year.getText() + "," + tf_pages.getText() + ")";
         performQuery(query);
         showBooks();
     }
