@@ -27,7 +27,7 @@
       <Separator fx:id="s_separator" layoutX="373.0" orientation="VERTICAL" prefHeight="266.0" />
       <TableView fx:id="tv_books" layoutX="393.0" layoutY="14.0" onMouseClicked="#handleMouseAction" prefHeight="235.0" prefWidth="388.0" stylesheets="@../../../CSS/TableView.css">
         <columns>
-          <TableColumn fx:id="tc_id" prefWidth="46.0" text="ID" />
+          <TableColumn fx:id="tc_id" prefWidth="46.0" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
           <TableColumn fx:id="tc_title" prefWidth="104.0" text="Title" />
             <TableColumn fx:id="tc_author" prefWidth="121.0" text="Author" />
             <TableColumn fx:id="tc_year" prefWidth="62.0" text="Year" />
