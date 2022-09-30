@@ -74,8 +74,8 @@ public class MainController implements Initializable {
         tf_pages.setText("" + book.getPages());
     }
 
+private Connection connection;
     public Connection openConnection() {
-        Connection connection;
         final String USERNAME = "root";
         final String PASSWORD = "020885";
         final String URL = "jdbc:mysql://localhost:3306/librarian_db";
@@ -84,8 +84,16 @@ public class MainController implements Initializable {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             return connection;
         } catch (Exception exception) {
-            System.out.println("Error: " + exception.getMessage());
+            System.out.println("Error opening connection: " + exception.getMessage());
             return null;
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (Exception exception) {
+            System.out.println("Error closing connection: " + exception.getMessage());
         }
     }
 
@@ -107,6 +115,7 @@ public class MainController implements Initializable {
                                  resultSet.getInt("pages"));
                 books.add(book);
             }
+            closeConnection();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -131,7 +140,6 @@ public class MainController implements Initializable {
     }
 
     private void insertRecord() {
-
         String query = "INSERT INTO books VALUES (" + tf_id.getText() + ",'" + tf_title.getText() + "','" + tf_author.getText() + "'," + tf_year.getText() + "," + tf_pages.getText() + ")";
         performQuery(query);
         showBooks();
@@ -156,6 +164,7 @@ public class MainController implements Initializable {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
+            closeConnection();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
