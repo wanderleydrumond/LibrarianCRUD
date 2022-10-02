@@ -1,0 +1,10 @@
+.text-field {
+    -fx-background-color: #44475a;
+    -fx-border-color: #f8f8f2;
+    -fx-text-fill: #f8f8f2;
+    -fx-accent: #932563;
+}
+
+.text-field:focused {
+    -fx-border-color: #f1fa8c;
+}

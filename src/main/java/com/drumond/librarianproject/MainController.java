@@ -67,14 +67,15 @@ public class MainController implements Initializable {
     public void handleMouseAction(MouseEvent mouseEvent) {
         Books book = tv_books.getSelectionModel().getSelectedItem();
 
-        tf_id.setText("" + book.getId());
+        tf_id.setText(String.valueOf(book.getId()));
         tf_title.setText(book.getTitle());
         tf_author.setText(book.getAuthor());
-        tf_year.setText("" + book.getYear());
-        tf_pages.setText("" + book.getPages());
+        tf_year.setText(String.valueOf(book.getYear()));
+        tf_pages.setText(String.valueOf(book.getPages()));
     }
 
-private Connection connection;
+    private Connection connection;
+
     public Connection openConnection() {
         final String USERNAME = "root";
         final String PASSWORD = "020885";
@@ -109,10 +110,10 @@ private Connection connection;
             Books book;
             while (resultSet.next()) {
                 book = new Books(resultSet.getInt("id"),
-                                 resultSet.getString("title"),
-                                 resultSet.getString("author"),
-                                 resultSet.getInt("year"),
-                                 resultSet.getInt("pages"));
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getInt("year"),
+                        resultSet.getInt("pages"));
                 books.add(book);
             }
             closeConnection();
@@ -125,6 +126,34 @@ private Connection connection;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showBooks();
+
+        Connection connection = openConnection();
+
+        String QUERY = "SELECT * FROM books LIMIT 1;";
+
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            Books book;
+
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(QUERY);
+            resultSet.next();
+
+            book = new Books(resultSet.getInt("id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("author"),
+                    resultSet.getInt("year"),
+                    resultSet.getInt("pages"));
+
+            tf_id.setText(String.valueOf(book.getId()));
+            tf_title.setText(book.getTitle());
+            tf_author.setText(book.getAuthor());
+            tf_year.setText(String.valueOf(book.getYear()));
+            tf_pages.setText(String.valueOf(book.getPages()));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void showBooks() {

@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="ap_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="266.0" minWidth="800.0" prefHeight="266.0" prefWidth="800.0" style="-fx-background-color: #282a36;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drumond.librarianproject.MainController">
    <children>
       <VBox fx:id="vbox_labels" layoutX="14.0" layoutY="14.0" prefHeight="165.0" prefWidth="38.0" spacing="18.0">
@@ -17,45 +17,53 @@
       </VBox>
       <VBox fx:id="vbox_textFields" layoutX="114.0" layoutY="14.0" prefHeight="165.0" prefWidth="238.0" spacing="10.0">
          <children>
-            <TextField fx:id="tf_id" style="-fx-background-color: #44475a; -fx-border-color: #f8f8f2; -fx-text-fill: #f8f8f2;" />
-            <TextField fx:id="tf_title" style="-fx-background-color: #44475a; -fx-border-color: #f8f8f2; -fx-text-fill: #f8f8f2;" />
-            <TextField fx:id="tf_author" style="-fx-background-color: #44475a; -fx-border-color: #f8f8f2; -fx-text-fill: #f8f8f2;" />
-            <TextField fx:id="tf_year" style="-fx-background-color: #44475a; -fx-border-color: #f8f8f2; -fx-text-fill: #f8f8f2;" />
-            <TextField fx:id="tf_pages" style="-fx-background-color: #44475a; -fx-border-color: #f8f8f2; -fx-text-fill: #f8f8f2;" />
+            <TextField fx:id="tf_id" stylesheets="@../../../CSS/TextFields.css"/>
+            <TextField fx:id="tf_title" stylesheets="@../../../CSS/TextFields.css"/>
+            <TextField fx:id="tf_author" stylesheets="@../../../CSS/TextFields.css"/>
+            <TextField fx:id="tf_year" stylesheets="@../../../CSS/TextFields.css"/>
+            <TextField fx:id="tf_pages" stylesheets="@../../../CSS/TextFields.css"/>
          </children>
       </VBox>
       <Separator fx:id="s_separator" layoutX="373.0" orientation="VERTICAL" prefHeight="266.0" />
       <TableView fx:id="tv_books" layoutX="393.0" layoutY="14.0" onMouseClicked="#handleMouseAction" prefHeight="235.0" prefWidth="388.0" stylesheets="@../../../CSS/TableView.css">
         <columns>
-          <TableColumn fx:id="tc_id" prefWidth="46.0" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
+           <TableColumn fx:id="tc_id" prefWidth="46.0" text="ID"/>
           <TableColumn fx:id="tc_title" prefWidth="104.0" text="Title" />
             <TableColumn fx:id="tc_author" prefWidth="121.0" text="Author" />
             <TableColumn fx:id="tc_year" prefWidth="62.0" text="Year" />
             <TableColumn fx:id="tc_pages" prefWidth="53.0" text="Pages" />
         </columns>
       </TableView>
-      <Button fx:id="b_insert" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: #44475a;" text="Insert">
+      <Button fx:id="b_insert" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="199.0" mnemonicParsing="false"
+              onAction="#handleButtonAction" prefHeight="43.0" prefWidth="49.0" stylesheets="@../../../CSS/Buttons.css"
+              text="Insert">
          <graphic>
             <ImageView fx:id="i_insert" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/plus.png" />
-               </image></ImageView>
-         </graphic></Button>
-      <Button fx:id="b_delete" contentDisplay="GRAPHIC_ONLY" layoutX="163.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #44475a;" text="Delete">
+                  <Image url="@../../../images/plus.png"/>
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="b_delete" contentDisplay="GRAPHIC_ONLY" layoutX="163.0" layoutY="199.0" mnemonicParsing="false"
+              onAction="#handleButtonAction" stylesheets="@../../../CSS/Buttons.css" text="Delete">
          <graphic>
             <ImageView fx:id="i_delete" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/minus.png" />
+                  <Image url="@../../../images/minus.png"/>
                </image>
             </ImageView>
-         </graphic></Button>
-      <Button fx:id="b_update" contentDisplay="GRAPHIC_ONLY" layoutX="301.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #44475a;" text="Update">
+         </graphic>
+      </Button>
+      <Button fx:id="b_update" contentDisplay="GRAPHIC_ONLY" layoutX="301.0" layoutY="199.0" mnemonicParsing="false"
+              onAction="#handleButtonAction" stylesheets="@../../../CSS/Buttons.css" text="Update">
          <graphic>
             <ImageView fx:id="i_update" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/pencil.png" />
+                  <Image url="@../../../images/pencil.png"/>
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
