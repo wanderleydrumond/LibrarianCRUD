@@ -159,6 +159,11 @@ public class MainController implements Initializable {
     }
 
     /**
+     * Contains the sql script that returns all table rows.
+     */
+    private final String SELECT_ALL = "SELECT * FROM books";
+
+    /**
      * Gets the books list from the database and fills the <code style="color: #50FA7B;">tableView</code>
      *
      * @return the <code style="color: #50FA7B;">books</code> list
@@ -166,12 +171,12 @@ public class MainController implements Initializable {
     public ObservableList<Books> getBooks() {
         ObservableList<Books> books = FXCollections.observableArrayList();
         Connection connection = openConnection();
-        String QUERY = "SELECT * FROM books";
+
         Statement statement;
         ResultSet resultSet;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(QUERY);
+            resultSet = statement.executeQuery(SELECT_ALL);
             Books book;
             while (resultSet.next()) {
                 book = new Books(resultSet.getInt("id"),
@@ -200,7 +205,7 @@ public class MainController implements Initializable {
 
         Connection connection = openConnection();
 
-        String QUERY = "SELECT * FROM books LIMIT 1;";
+        String SELECT_FIRST = SELECT_ALL + " LIMIT 1;";
 
         Statement statement;
         ResultSet resultSet;
@@ -208,7 +213,7 @@ public class MainController implements Initializable {
             Books book;
 
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(QUERY);
+            resultSet = statement.executeQuery(SELECT_FIRST);
             resultSet.next();
 
             book = new Books(resultSet.getInt("id"),
