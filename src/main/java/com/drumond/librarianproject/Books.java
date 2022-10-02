@@ -1,11 +1,11 @@
 package com.drumond.librarianproject;
 
 public class Books {
-    private int id;
-    private String title;
-    private String author;
-    private int year;
-    private int pages;
+    private final int id;
+    private final String title;
+    private final String author;
+    private final int year;
+    private final int pages;
 
     public Books(int id, String title, String author, int year, int pages) {
         this.id = id;
